@@ -7,7 +7,8 @@ const INITIAL_STATE = {
     error: false
 }
 
-export const Context = createContext( INITIAL_STATE );
+export const UserContext = createContext( INITIAL_STATE );
+export const UserContextDispatch = createContext( INITIAL_STATE );
 
 export const ContextProvider = ({children}) => {
     const [state, dispatch] = useReducer( Reducer, INITIAL_STATE);
@@ -17,14 +18,16 @@ export const ContextProvider = ({children}) => {
     },[state.user]);
 
     return (
-        <ContextProvider
+        <UserContext.Provider
         value={{
             user: state.user,
             isFetching: state.isFetching,
-            error: state.error,
-            dispatch
+            error: state.error
         }}>
+            <UserContextDispatch.Provider 
+            value={dispatch}>
             {children}
-        </ContextProvider>
+            </UserContextDispatch.Provider>
+        </UserContext.Provider>
     );
 }
