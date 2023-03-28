@@ -5,12 +5,12 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 const App = () => {
   return (
-    <Router>
+    // <Router>
       <TopBar />
-      <Routes>
-      <Route path="/to" element={<TopBar />} />
-      </Routes>
-    </Router>
+      // <Routes>
+      
+      // </Routes>
+    // </Router>
   )
 }
 
