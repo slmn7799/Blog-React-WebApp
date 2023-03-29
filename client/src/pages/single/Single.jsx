@@ -1,11 +1,12 @@
 import "./single.css";
+import SideBar from "../../components/sidebar/SideBar";
+import SinglePost from "../../components/singlePost/SinglePost";
 
-const Single = () => {
+export default function Single() {
   return (
-    <div>
-      Single
+    <div className="single">
+      <SinglePost/>
+      <SideBar />
     </div>
-  )
+  );
 }
-
-export default Single
