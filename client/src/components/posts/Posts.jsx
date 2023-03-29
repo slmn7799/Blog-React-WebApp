@@ -1,9 +1,12 @@
 import "./posts.css";
+import Post from "../post/Post"
 
-const Posts = () => {
+const Posts = ({posts}) => {
   return (
-    <div>
-      Posts
+    <div className="post">
+      { posts.map(p => {
+        <Post post={p} />
+      })}
     </div>
   )
 }
