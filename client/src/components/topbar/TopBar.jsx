@@ -6,6 +6,11 @@ import { Link } from "react-router-dom";
 const TopBar = () => {
 
   const { user, dispatch } = useContext(UserContext);
+  const PF = "http://localhost:8080/images/"
+
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+  };
 
   return (
     <div className="top">
@@ -38,7 +43,7 @@ const TopBar = () => {
             </Link>
           </li>
           <li className="topItemList">
-            <Link className="link" to="/">
+            <Link className="link" to="/" onClick={handleLogout}>
               { user && "Logout"}
             </Link>
           </li>
@@ -48,8 +53,8 @@ const TopBar = () => {
         { user ? (
           <ul className="topList">
             <li className="topItemList">
-              <Link className="link" to="/setting">
-                <img src="" alt="" className="topImg" />
+              <Link className="link" to="/settings">
+                <img src={PF+user.profilePic} alt="" className="topImg" />
               </Link>
             </li>
           </ul>

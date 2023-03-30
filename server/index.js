@@ -29,6 +29,7 @@ app.post("/api/upload", upload.single("file") , (req, res) => {
     res.status(200).json("file has been uploaded");
 } )
 
+app.use('/images', express.static('images'));
 app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/categories", catsRoute);

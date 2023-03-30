@@ -1,9 +1,18 @@
 import "./sidebar.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const SideBar = () => {
 
   const [ cats, setCats] = useState([]);
+
+  useEffect(() => {
+    const getCats = async () => {
+      const res = await axios.get("http://localhost:8080/api/categories");
+      setCats(res.data);
+    };
+    getCats();
+  }, []);
 
   return (
     <div className="sideBar">
@@ -17,7 +26,7 @@ const SideBar = () => {
         <ul className="sideBarList">
           { cats.map((c) => {
             <li className="sideBarListItem">
-              <Link className="link" to={`/?cat=${c.name}`}>
+              <Link className="link" to={`http://localhost:8080/api/?cat=${c.name}`}>
               {c.name}
               </Link>
             </li>

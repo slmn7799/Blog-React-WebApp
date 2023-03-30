@@ -27,3 +27,16 @@ export const UpdateSuccess = (user) => ({
 export const UpdateFailure = () => ({
     type: "UPDATE_FAILURE"
 });
+
+export const RegisterStart = (userCreds) => ({
+    type: "REGISTER_START"
+});
+
+export const RegisterSuccess = (user) => ({
+    type: "REGISTER_SUCCESS",
+    payload: user
+});
+
+export const RegisterFailure = () => ({
+    type: "REGISTER_FAILURE"
+});
