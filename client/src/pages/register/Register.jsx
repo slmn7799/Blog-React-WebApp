@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./register.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/Context";
 
 const Register = () => {
+
+  const navigate = useNavigate();
+
+  const { isFetching, dispatch } = useContext(UserContext);
 
   const [ username, setUsername] = useState("");
   const [ email, setEmail] = useState("");
@@ -13,14 +18,18 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(false);
+    dispatch({type:"REGISTER_START"});
     try{
-      const res = await axios.post("/auth/register", {
+      const res = await axios.post("http://localhost:8080/api/auth/register", {
         username,
         email,
         password
       });
-      res.data && window.location.replace("/login");
+      // res.data && window.location.replace("/login");
+      dispatch({type:"REGISTER_SUCCESS", payload: res.data});
+      navigate("/");
     }catch(err){
+      dispatch({type:"REGISTER_FAILURE"});
       setError(true);
     }
   }
